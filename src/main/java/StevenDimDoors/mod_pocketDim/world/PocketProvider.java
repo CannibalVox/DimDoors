@@ -1,7 +1,6 @@
 package StevenDimDoors.mod_pocketDim.world;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
@@ -110,24 +109,6 @@ public class PocketProvider extends WorldProvider
 		//The question is whether this should be "Pocket Dimension" or "Pocket Dimension #" -- I'm not going to change
 		//it out of concern that it could break something. ~SenseiKiwi
 		return "PocketDim " + this.dimensionId;
-	}
-
-	@Override
-	public int getRespawnDimension(EntityPlayerMP player)
-	{
-		int respawnDim;
-
-		if (properties.LimboEnabled)
-		{
-			respawnDim = properties.LimboDimensionID;
-		}
-		else
-		{
-			respawnDim = PocketManager.getDimensionData(this.dimensionId).root().id();
-		}
-		// TODO: Are we sure we need to load the dimension as well? Why can't the game handle that?
-		PocketManager.loadDimension(respawnDim);
-		return respawnDim;
 	}
 
 	@Override
